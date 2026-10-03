@@ -113,8 +113,3 @@ comment: false
 [Anthropic（人工智能公司）的协作素养框架](https://www.anthropic.com/ai-fluency/overview)把委派、描述、辨别和尽责放在一起讨论。对应到我自己的学习，我想观察的变化很朴素：需要助手猜的背景少了，发现问题早了，做完以后也更能解释为什么这样做。
 
 下次再看到“四步”这个参数，我希望自己能顺着程序说清楚它限制了什么，再决定要不要改。那比记住一个默认值更让我踏实。
-
-## 延伸阅读
-
-- [Zaixi（作者）：《K 型增长的前夜》](https://lizaixi01.github.io/blog/k-shaped-growth-eve/)
-- [Joye（作者）：《Agent Harness（智能体运行与协作机制）的三种协作尺度：哪些会被模型学走，哪些会越做越大》](https://www.joyehuang.me/blog/20260912---codexharnessevolution/post)
