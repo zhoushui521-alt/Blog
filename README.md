@@ -86,6 +86,7 @@ comment: false
 | 中英文首页 | `src/components/home/DanielHome.astro`（首页组件） |
 | 关于、联系、项目等页面 | `src/pages/`（页面路由） |
 | 文章与笔记 | `src/content/blog/`、`src/content/notes/`（内容目录） |
+| 微信收款二维码 | `public/images/wechat-pay.jpg`（公开收款图片） |
 | 头像与网站图标 | `src/assets/avatar.png`、`public/favicon/`（图片资源） |
 
 主要使用 Astro 5（站点框架）、TypeScript（类型语言）、React（交互组件）和 UnoCSS（样式工具），通过 Vercel（托管平台）适配器生成部署产物。
@@ -96,7 +97,7 @@ comment: false
 
 站点地址优先读取 `PUBLIC_SITE_URL`（公开站点地址），例如未来实际分配的默认域名或自有域名。未设置时，使用平台提供的正式域名；本地开发回退到本地地址。部署后应确认文章地址、分享图片、站点地图和订阅源都指向最终域名。
 
-当前公开内容不需要数据库、机器人或评论服务密钥。评论与收款等功能应在配置自己的服务和资料后再启用。
+当前公开内容不需要数据库、机器人或评论服务密钥。评论保持关闭；文章底部的支持入口已接入自己的微信收款二维码，图片可直接查看和保存。
 
 ## 更新方式
 

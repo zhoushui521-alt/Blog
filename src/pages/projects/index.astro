@@ -2,9 +2,13 @@
 import { projects } from '@/data/profile'
 
 import PageLayout from '@/layouts/CommonPage.astro'
+import SupportSection from '@/components/projects/SupportSection.astro'
 
 export const prerender = true
-const headings = projects.map((p) => ({ depth: 2, slug: p.id, text: p.name }))
+const headings = [
+  ...projects.map((p) => ({ depth: 2, slug: p.id, text: p.name })),
+  { depth: 2, slug: 'sponsorship', text: '请我喝杯咖啡' }
+]
 ---
 
 <PageLayout title='Projects' {headings}>
@@ -30,4 +34,5 @@ const headings = projects.map((p) => ({ depth: 2, slug: p.id, text: p.name }))
       </section>
     ))
   }
+  <SupportSection lang='zh' />
 </PageLayout>

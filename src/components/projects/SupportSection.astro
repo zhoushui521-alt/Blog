@@ -1,0 +1,44 @@
+---
+interface Props {
+  lang?: 'zh' | 'en'
+}
+
+const { lang = 'zh' } = Astro.props
+const en = lang === 'en'
+---
+
+<section id='sponsorship' class='scroll-mt-24'>
+  <h2>{en ? 'Buy me a coffee' : '请我喝杯咖啡'}</h2>
+  <p>
+    {
+      en
+        ? 'If something here helped you, you can support this blog with WeChat Pay. Thank you for reading.'
+        : '如果这里的文章或笔记对你有帮助，可以通过微信请我喝杯咖啡。谢谢你的阅读与支持。'
+    }
+  </p>
+  <a
+    href='/images/wechat-pay.jpg'
+    target='_blank'
+    rel='noopener noreferrer'
+    class='inline-block max-w-full'
+    aria-label={en ? 'Open the original WeChat Pay QR code' : '查看微信收款码原图'}
+  >
+    <img
+      src='/images/wechat-pay.jpg'
+      alt={en
+        ? 'WeChat Pay QR code for supporting Daniel’s blog'
+        : '支持 Daniel 博客的微信收款二维码'}
+      width='828'
+      height='1124'
+      loading='lazy'
+      class='m-0 h-auto w-80 max-w-full rounded-xl border'
+    />
+  </a>
+  <p class='text-sm text-muted-foreground'>
+    {
+      en
+        ? 'Scan with WeChat, or open the image to save it.'
+        : '使用微信扫码，或点击图片查看、保存原图。'
+    }
+  </p>
+</section>
