@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-pure/user'
+
 interface Props {
   lang?: 'zh' | 'en'
 }
@@ -16,29 +18,95 @@ const en = lang === 'en'
         : '如果这里的文章或笔记对你有帮助，可以通过微信请我喝杯咖啡。谢谢你的阅读与支持。'
     }
   </p>
-  <a
-    href='/images/wechat-pay.jpg'
-    target='_blank'
-    rel='noopener noreferrer'
-    class='inline-block max-w-full'
-    aria-label={en ? 'Open the original WeChat Pay QR code' : '查看微信收款码原图'}
-  >
-    <img
-      src='/images/wechat-pay.jpg'
-      alt={en
-        ? 'WeChat Pay QR code for supporting Daniel’s blog'
-        : '支持 Daniel 博客的微信收款二维码'}
-      width='828'
-      height='1124'
-      loading='lazy'
-      class='m-0 h-auto w-80 max-w-full rounded-xl border'
-    />
-  </a>
+  <details class='support-qr w-60 max-w-full'>
+    <summary
+      class='support-qr-card relative cursor-pointer overflow-hidden rounded-xl border bg-white'
+      aria-label={en ? 'Show or hide the WeChat Pay QR code' : '显示或遮盖微信收款二维码'}
+    >
+      <img
+        src='/images/wechat-pay.jpg'
+        alt={en
+          ? 'WeChat Pay QR code for supporting Daniel’s blog'
+          : '支持 Daniel 博客的微信收款二维码'}
+        width='828'
+        height='1124'
+        loading='lazy'
+        class='support-qr-image m-0 block h-auto w-full'
+      />
+      <span
+        class='support-qr-cover pointer-events-none absolute inset-0 flex items-center justify-center text-black'
+        aria-hidden='true'
+      >
+        <Icon name='wechat-pay' class='size-20' />
+      </span>
+    </summary>
+    <p class='mt-3 text-sm'>
+      <a href='/images/wechat-pay.jpg' target='_blank' rel='noopener noreferrer'>
+        {en ? 'Open or save the original image' : '查看、保存原图'}
+      </a>
+    </p>
+  </details>
   <p class='text-sm text-muted-foreground'>
     {
       en
-        ? 'Scan with WeChat, or open the image to save it.'
-        : '使用微信扫码，或点击图片查看、保存原图。'
+        ? 'Hover or tap to reveal. Scan with WeChat to support.'
+        : '鼠标移入或点按查看，使用微信扫码支持。'
     }
   </p>
 </section>
+
+<style>
+  .support-qr-card {
+    list-style: none;
+  }
+
+  .support-qr-card::-webkit-details-marker {
+    display: none;
+  }
+
+  .support-qr-card:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .support-qr-image {
+    opacity: 0.3;
+    filter: blur(4px);
+    transition:
+      opacity 180ms ease,
+      filter 180ms ease;
+  }
+
+  .support-qr-cover {
+    transition: opacity 180ms ease;
+  }
+
+  .support-qr[open] .support-qr-image,
+  .support-qr-card:focus-visible .support-qr-image {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .support-qr[open] .support-qr-cover,
+  .support-qr-card:focus-visible .support-qr-cover {
+    opacity: 0;
+  }
+
+  @media (hover: hover) {
+    .support-qr-card:hover .support-qr-image {
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .support-qr-card:hover .support-qr-cover {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .support-qr-image,
+    .support-qr-cover {
+      transition: none;
+    }
+  }
+</style>
