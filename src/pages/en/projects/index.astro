@@ -1,0 +1,34 @@
+---
+import { projects } from '@/data/profile'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+
+export const prerender = true
+const headings = projects.map((p) => ({ depth: 2, slug: p.id, text: p.enName }))
+---
+
+<PageLayout title='Projects' {headings}>
+  <p>
+    A selection of projects and engineering practice. Dates refer to the records in my previous
+    site; they do not assert that a deployment or test was reverified today.
+  </p>
+  {
+    projects.map((p) => (
+      <section>
+        <p class='text-sm text-muted-foreground'>Record date：{p.verified}</p>
+        {p.links.repository && (
+          <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
+            GitHub →
+          </a>
+        )}
+        {p.links.demo && (
+          <p>
+            <a href={p.links.demo} target='_blank' rel='noopener noreferrer'>
+              Project website (current availability not rechecked) →
+            </a>
+          </p>
+        )}
+      </section>
+    ))
+  }
+</PageLayout>

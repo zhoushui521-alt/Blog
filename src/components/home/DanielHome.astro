@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import { profile, projects } from '@/data/profile'
+
+import { Button, Icon, Label } from 'astro-pure/user'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import LegacyIntroOverlay from '@/components/intro/LegacyIntroOverlay.astro'
+import Terminal from '@/components/terminal/Terminal.astro'
+import avatar from '@/assets/avatar.png'
+
+import LinkCard from './LinkCard.astro'
+import Section from './Section.astro'
+import SkillLayout from './SkillLayout.astro'
+
+const { lang = 'zh' } = Astro.props
+const en = lang === 'en'
+const prefix = en ? '/en' : ''
+const notes = (await getCollection(en ? 'notesEn' : 'notes'))
+  .filter((n) => !n.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4)
+const posts = (await getCollection(en ? 'blogEn' : 'blog'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 5)
+---
+
+<PageLayout meta={{ title: en ? 'Home' : '首页' }} highlightColor='#659EB9'>
+  <LegacyIntroOverlay />
+  <main class='flex w-full flex-col items-center'>
+    <section
+      class='animate relative z-50 mb-10 flex flex-col items-center gap-y-7'
+      id='content-header'
+    >
+      <Image
+        src={avatar}
+        alt='Daniel'
+        data-intro-target='avatar'
+        class='h-28 w-28 rounded-full border object-cover p-1'
+        loading='eager'
+      />
+      <div class='flex flex-col items-center gap-y-4'>
+        <h1 class='text-3xl font-bold'>{profile.name}</h1>
+        <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
+          <Label title={profile.location}>
+            <Icon name='location' class='size-5' slot='icon' />
+          </Label>
+          <Label title='GitHub' as='a' href={profile.github} target='_blank'>
+            <Icon name='github' class='size-5' slot='icon' />
+          </Label>
+        </div>
+      </div>
+      <a
+        href={prefix + '/contact'}
+        class='flex items-center gap-x-3 rounded-full border bg-background px-4 py-2 text-sm shadow-sm transition-shadow hover:shadow-md'
+        ><span class='size-2 rounded-full bg-green-400'></span><span>Connect Me!</span></a
+      >
+    </section>
+    <div
+      id='content'
+      class='animate relative z-0 flex w-full min-w-0 max-w-full flex-col gap-y-10 md:w-4/5 lg:w-5/6'
+    >
+      <Terminal />
+      <Section title='About'>
+        <p class='text-muted-foreground'>{en ? profile.roleEn : profile.role}</p>
+        <p class='leading-relaxed text-muted-foreground'>{en ? profile.bioEn : profile.bio}</p>
+        <Button
+          title='More about me'
+          class='w-fit self-end'
+          href={prefix + '/about'}
+          style='ahead'
+        />
+      </Section>
+      <Section title='Blog'>
+        {
+          posts.length ? (
+            posts.map((p) => (
+              <LinkCard
+                heading={p.data.title}
+                subheading={p.data.description}
+                href={prefix + '/blog/' + (p.data.translationKey || p.id)}
+                target='_self'
+              />
+            ))
+          ) : (
+            <p class='text-muted-foreground'>
+              {en
+                ? 'Long-form articles will live here. Engineering logs are available in Notes.'
+                : '正式文章慢慢整理，已有的工程日志先放在 Notes（笔记）里。'}
+            </p>
+          )
+        }
+        <Button title='More blogs' class='w-fit self-end' href={prefix + '/blog'} style='ahead' />
+      </Section>
+      <Section title='Notes'>
+        {
+          notes.map((n) => (
+            <LinkCard
+              heading={n.data.title}
+              subheading={n.data.description}
+              date={n.data.date.toISOString().slice(0, 10)}
+              href={prefix + '/notes/' + (n.data.translationKey || n.id)}
+              target='_self'
+            />
+          ))
+        }
+        <Button title='More notes' class='w-fit self-end' href={prefix + '/notes'} style='ahead' />
+      </Section>
+      <Section title='Projects'>
+        {
+          projects
+            .slice(0, 3)
+            .map((p) => (
+              <LinkCard
+                heading={en ? p.enName : p.name}
+                subheading={en ? p.enDescription : p.description}
+                href={prefix + '/projects#' + p.id}
+                target='_self'
+              />
+            ))
+        }
+        <Button
+          title='More projects'
+          class='w-fit self-end'
+          href={prefix + '/projects'}
+          style='ahead'
+        />
+      </Section>
+      <Section title='Experience'>
+        <LinkCard
+          heading={en ? 'Infrastructure → Applications → AI' : '基础设施 → 应用开发 → AI'}
+          subheading={en
+            ? 'Linux systems, embedded development, full-stack applications and AI workflows.'
+            : '从 Linux 系统、嵌入式和全栈应用，逐步走向 AI 工作流与应用开发。'}
+          href={prefix + '/about#journey'}
+          target='_self'
+        />
+      </Section>
+      <Section title='Education'>
+        <div class='rounded-2xl border bg-muted px-5 py-4'>
+          <h3 class='text-lg font-medium'>
+            {en ? 'Hubei Polytechnic University' : '湖北理工学院'}
+          </h3><p class='mt-2 text-muted-foreground'>
+            {
+              en
+                ? 'Computer Science and Technology · Undergraduate study began in 2022'
+                : '计算机科学与技术 · 2022 年本科入学'
+            }
+          </p>
+        </div>
+      </Section>
+      <Section title='Skills'>
+        <SkillLayout
+          title='Languages'
+          skills={['Python', 'TypeScript', 'JavaScript', 'Java', 'C / C++', 'SQL']}
+        />
+        <SkillLayout title='Frontend' skills={['React', 'Next.js', 'Tailwind CSS']} />
+        <SkillLayout
+          title='AI & Workflow'
+          skills={['RAG', 'LangChain', 'LangGraph', 'Agent', 'ComfyUI']}
+        />
+        <SkillLayout title='Systems & Data' skills={['Linux', 'SQLite', 'MySQL', 'Qt']} />
+      </Section>
+      <Section title={en ? 'Explore' : '继续探索'}>
+        <div class='flex flex-wrap gap-3'>
+          <Button title='Lab' href='/lab' style='pill' /><Button
+            title='Talks'
+            href='/talks'
+            style='pill'
+          /><Button title='Links' href={prefix + '/links'} style='pill' />
+        </div>
+      </Section>
+    </div>
+  </main>
+</PageLayout>

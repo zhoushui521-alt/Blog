@@ -1,0 +1,33 @@
+---
+import { projects } from '@/data/profile'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+
+export const prerender = true
+const headings = projects.map((p) => ({ depth: 2, slug: p.id, text: p.name }))
+---
+
+<PageLayout title='Projects' {headings}>
+  <p>
+    选取旧站中的项目与工程实践。下方记录日期沿用旧站资料，不代表本次重新运行了这些项目、测试或线上服务。
+  </p>
+  {
+    projects.map((p) => (
+      <section>
+        <p class='text-sm text-muted-foreground'>资料记录日期：{p.verified}</p>
+        {p.links.repository && (
+          <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
+            GitHub →
+          </a>
+        )}
+        {p.links.demo && (
+          <p>
+            <a href={p.links.demo} target='_blank' rel='noopener noreferrer'>
+              项目网站（当前可用性未复验） →
+            </a>
+          </p>
+        )}
+      </section>
+    ))
+  }
+</PageLayout>

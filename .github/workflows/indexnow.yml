@@ -1,0 +1,10 @@
+name: IndexNow (disabled until deployment is configured)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Configure your own public origin before enabling IndexNow.'

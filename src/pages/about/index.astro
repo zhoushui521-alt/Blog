@@ -1,0 +1,36 @@
+---
+import { profile } from '@/data/profile'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+
+export const prerender = true
+const headings = [
+  { depth: 2, slug: 'journey', text: 'Journey' },
+  { depth: 2, slug: 'principles', text: 'Principles' }
+]
+---
+
+<PageLayout title='About' {headings}>
+  <p>{profile.bio}</p>
+  <p>
+    2022 年进入湖北理工学院，学习计算机科学与技术。当前关注 AI
+    工作流、检索增强生成、本地模型部署与全栈应用，希望把基础设施工程经验变成可复用的开发方法。
+  </p>
+  <h2 id='journey'>Journey</h2>
+  <ul>
+    <li>2024 · Java 与 MySQL 网上作业系统：角色权限、作业提交与数据库查询。</li>
+    <li>2025 · Linux 与 Qt/C++ 车载中控：音视频、多线程与文件管理。</li>
+    <li>2025 · 华颖机电运维实习：参与昇腾 Atlas 900 训练集群测试、驱动兼容验证与故障排查。</li>
+    <li>2026 · 探索 AI 应用、可追溯 RAG、智能体工具与需要人工确认的工作流。</li>
+  </ul>
+  <h2 id='principles'>Principles</h2>
+  <ul>
+    <li>关注完整流程，保持模块职责和接口清晰。</li><li>
+      区分源码实现、自动测试、真实运行和部署证据。
+    </li><li>选择简单方案，把可复用的经验持续沉淀下来。</li>
+  </ul>
+  <p>
+    <a href={profile.github} target='_blank' rel='noopener noreferrer'
+      >GitHub · {profile.username}</a>
+  </p>
+</PageLayout>

@@ -1,0 +1,14 @@
+---
+import { profile } from '@/data/profile'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+
+export const prerender = true
+---
+
+<PageLayout title='Contact'
+  ><p>如果你也在探索 AI 应用、全栈开发，或者想交流这里的某个项目，可以在 GitHub 找到我。</p><p>
+    <a href={profile.github} target='_blank' rel='noopener noreferrer'
+      >GitHub · {profile.username}</a>
+  </p></PageLayout
+>

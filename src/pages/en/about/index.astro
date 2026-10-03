@@ -1,0 +1,44 @@
+---
+import { profile } from '@/data/profile'
+
+import PageLayout from '@/layouts/CommonPage.astro'
+
+export const prerender = true
+const headings = [
+  { depth: 2, slug: 'journey', text: 'Journey' },
+  { depth: 2, slug: 'principles', text: 'Principles' }
+]
+---
+
+<PageLayout title='About' {headings}>
+  <p>{profile.bioEn}</p>
+  <p>
+    I studied Computer Science and Technology at Hubei Polytechnic University, starting in 2022. My
+    interests include AI workflows, retrieval-augmented generation, local model deployment and
+    full-stack applications.
+  </p>
+  <h2 id='journey'>Journey</h2>
+  <ul>
+    <li>2024 · Java and MySQL homework system: roles, submissions and database queries.</li>
+    <li>
+      2025 · Linux and Qt/C++ in-vehicle control system: media, threading and file management.
+    </li>
+    <li>
+      2025 · Operations internship at Huaying Electromechanical: Ascend Atlas 900 cluster testing,
+      driver compatibility and troubleshooting.
+    </li>
+    <li>
+      2026 · Exploring AI applications, traceable RAG, agent tools and human-approved workflows.
+    </li>
+  </ul>
+  <h2 id='principles'>Principles</h2>
+  <ul>
+    <li>Build complete workflows and keep interfaces clear.</li><li>
+      Distinguish implementation, automated tests, real execution and deployment evidence.
+    </li><li>Keep solutions simple; turn reusable experience into lasting knowledge.</li>
+  </ul>
+  <p>
+    <a href={profile.github} target='_blank' rel='noopener noreferrer'
+      >GitHub · {profile.username}</a>
+  </p>
+</PageLayout>

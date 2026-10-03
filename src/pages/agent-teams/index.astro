@@ -1,0 +1,9 @@
+---
+import PageLayout from '@/layouts/BaseLayout.astro'
+
+Astro.response.status = 404
+---
+
+<PageLayout meta={{ title: '404', noindex: true }}
+  ><h1>404</h1><p>此页面不存在。<a href='/'>返回首页</a></p></PageLayout
+>
