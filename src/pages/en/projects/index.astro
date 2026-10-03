@@ -7,7 +7,7 @@ import SupportSection from '@/components/projects/SupportSection.astro'
 export const prerender = true
 const headings = [
   ...projects.map((p) => ({ depth: 2, slug: p.id, text: p.enName })),
-  { depth: 2, slug: 'sponsorship', text: 'Buy me a coffee' }
+  { depth: 2, slug: 'sponsorship', text: 'Sponsorship' }
 ]
 ---
 
