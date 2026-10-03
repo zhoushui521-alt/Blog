@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto'
 import { readdir, readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, sep } from 'node:path'
 
 export const origin =
   process.env.PUBLIC_SITE_URL ||
@@ -87,7 +87,9 @@ export async function readPages(dir, prefix = '') {
     const name = join(prefix, entry.name)
     if (entry.isDirectory()) pages.push(...(await readPages(dir, name)))
     else if (entry.name.endsWith('.html')) {
-      const path = name === '404.html' ? '/404' : '/' + name.replace(/(?:\/)?index\.html$/, '')
+      // Filesystem separators must not leak into public URL paths on Windows.
+      const urlPath = name.split(sep).join('/')
+      const path = urlPath === '404.html' ? '/404' : '/' + urlPath.replace(/(?:\/)?index\.html$/, '')
       pages.push(parseHtml(await readFile(join(dir, name), 'utf8'), path))
     }
   }

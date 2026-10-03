@@ -1,5 +1,4 @@
 ---
-import { listingMetadata } from '@/lib/seo/metadata'
 /**
  * Notes Module - /notes
  * This is a knowledge base for ideas, snippets, and semi-finished materials.
@@ -8,6 +7,7 @@ import { listingMetadata } from '@/lib/seo/metadata'
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
+import { listingMetadata } from '@/lib/seo/metadata'
 
 import { Paginator } from 'astro-pure/components/pages'
 import { Button, Icon } from 'astro-pure/user'
@@ -45,7 +45,12 @@ const statusCounts = allNotes.reduce(
   {} as Record<string, number>
 )
 
-const meta = listingMetadata('notes', false, page.currentPage, page.data.map((entry) => entry.data.title))
+const meta = listingMetadata(
+  'notes',
+  false,
+  page.currentPage,
+  page.data.map((entry) => entry.data.title)
+)
 
 const paginationProps = {
   ...(page.url.prev && {
@@ -117,9 +122,7 @@ const typeColors: Record<string, string> = {
         </div>
       </div>
       <p class='max-w-3xl text-muted-foreground'>
-        这里是我平时沉淀的一手笔记：Agent 学习、工程化选型对比（Embedding、向量库、AI SDK
-        等）、面试里遇到的好题目。
-        还没打磨成博客，但都是最新的思考——比成稿博客更接近"现在在想什么"。
+        从学习笔记里整理出来的问题、例子和理解。先把一个概念讲清楚，再记下它的边界和还没想明白的地方；有新的认识就继续补。
       </p>
       <PageInfo class='mt-3 italic' path='/notes' />
     </div>

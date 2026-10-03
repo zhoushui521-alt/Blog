@@ -86,8 +86,8 @@ const posts = (await getCollection(en ? 'blogEn' : 'blog'))
           ) : (
             <p class='text-muted-foreground'>
               {en
-                ? 'Long-form articles will live here. Engineering logs are available in Notes.'
-                : '正式文章慢慢整理，已有的工程日志先放在 Notes（笔记）里。'}
+                ? 'Long-form articles will live here. Short learning notes are available in Notes.'
+                : '正式文章慢慢整理，学习中的问题和理解先记在 Notes（笔记）里。'}
             </p>
           )
         }
@@ -107,7 +107,7 @@ const posts = (await getCollection(en ? 'blogEn' : 'blog'))
         }
         <Button title='More notes' class='w-fit self-end' href={prefix + '/notes'} style='ahead' />
       </Section>
-      <Section title='Projects'>
+      <Section title='Open Source'>
         {
           projects
             .slice(0, 3)
@@ -121,20 +121,10 @@ const posts = (await getCollection(en ? 'blogEn' : 'blog'))
             ))
         }
         <Button
-          title='More projects'
+          title='More open source'
           class='w-fit self-end'
           href={prefix + '/projects'}
           style='ahead'
-        />
-      </Section>
-      <Section title='Experience'>
-        <LinkCard
-          heading={en ? 'Infrastructure → Applications → AI' : '基础设施 → 应用开发 → AI'}
-          subheading={en
-            ? 'Linux systems, embedded development, full-stack applications and AI workflows.'
-            : '从 Linux 系统、嵌入式和全栈应用，逐步走向 AI 工作流与应用开发。'}
-          href={prefix + '/about#journey'}
-          target='_self'
         />
       </Section>
       <Section title='Education'>
@@ -164,11 +154,7 @@ const posts = (await getCollection(en ? 'blogEn' : 'blog'))
       </Section>
       <Section title={en ? 'Explore' : '继续探索'}>
         <div class='flex flex-wrap gap-3'>
-          <Button title='Lab' href='/lab' style='pill' /><Button
-            title='Talks'
-            href='/talks'
-            style='pill'
-          /><Button title='Links' href={prefix + '/links'} style='pill' />
+          <Button title='Links' href={prefix + '/links'} style='pill' />
         </div>
       </Section>
     </div>

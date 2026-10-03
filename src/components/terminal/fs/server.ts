@@ -15,7 +15,6 @@ export async function buildSiteFs(): Promise<FsNode> {
   const notesRaw = await getCollection('notes').catch(() => [] as unknown as RawEntry[])
   const notesEnRaw = await getCollection('notesEn').catch(() => [] as unknown as RawEntry[])
   const curatedRaw = await getCollection('curated').catch(() => [] as unknown as RawEntry[])
-  const talksRaw = await getCollection('talks').catch(() => [] as unknown as RawEntry[])
 
   const blog = sortByDate(blogRaw).filter(isPublished).map(toEntry('blog'))
   const blogEn = sortByDate(blogEnRaw).filter(isPublished).map(toEntry('blog_en'))
@@ -28,11 +27,8 @@ export async function buildSiteFs(): Promise<FsNode> {
   const curated = sortByDate(curatedRaw as RawEntry[])
     .filter(isPublished)
     .map(toEntry('curated'))
-  const talks = sortByDate(talksRaw as RawEntry[])
-    .filter(isPublished)
-    .map(toEntry('talks'))
 
-  return buildManifest({ blog, blogEn, notes, notesEn, curated, talks })
+  return buildManifest({ blog, blogEn, notes, notesEn, curated })
 }
 
 type RawEntry = {

@@ -38,14 +38,13 @@ export type BuildArgs = {
   notes: FsCollectionEntry[]
   notesEn: FsCollectionEntry[]
   curated: FsCollectionEntry[]
-  talks: FsCollectionEntry[]
 }
 
 /**
  * Build the pseudo-FS root from collection data. Pure function: same input
  * always yields the same tree. Called once per page render in BaseLayout.
  */
-export function buildManifest({ blog, blogEn, notes, notesEn, curated, talks }: BuildArgs): FsNode {
+export function buildManifest({ blog, blogEn, notes, notesEn, curated }: BuildArgs): FsNode {
   return {
     type: 'dir',
     name: '',
@@ -59,7 +58,6 @@ export function buildManifest({ blog, blogEn, notes, notesEn, curated, talks }: 
       buildPostsDir('blog_en', 'English blog mirrors', blogEn, '/en/blog'),
       buildPostsDir('notes_en', 'English short-form note mirrors', notesEn, '/en/notes'),
       buildPostsDir('curated', 'curated external readings and digests', curated, '/curated'),
-      buildPostsDir('talks', 'weekly sharing sessions', talks, '/talks'),
       buildContactDir(),
       buildEtcDir(),
       {

@@ -11,26 +11,16 @@ const headings = [
 ]
 ---
 
-<PageLayout title='Projects' {headings}>
-  <p>
-    选取旧站中的项目与工程实践。下方记录日期沿用旧站资料，不代表本次重新运行了这些项目、测试或线上服务。
-  </p>
+<PageLayout title='Open Source' {headings}>
+  <p>这里放已经公开源码的项目。具体实现和后续改动，可以直接到仓库里看。</p>
   {
     projects.map((p) => (
       <section>
-        <p class='text-sm text-muted-foreground'>资料记录日期：{p.verified}</p>
-        {p.links.repository && (
-          <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
-            GitHub →
-          </a>
-        )}
-        {p.links.demo && (
-          <p>
-            <a href={p.links.demo} target='_blank' rel='noopener noreferrer'>
-              项目网站（当前可用性未复验） →
-            </a>
-          </p>
-        )}
+        <h2 id={p.id}>{p.name}</h2>
+        <p>{p.description}</p>
+        <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
+          GitHub（源码仓库） →
+        </a>
       </section>
     ))
   }

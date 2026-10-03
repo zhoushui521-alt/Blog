@@ -11,27 +11,18 @@ const headings = [
 ]
 ---
 
-<PageLayout title='Projects' {headings}>
+<PageLayout title='Open Source' {headings}>
   <p>
-    A selection of projects and engineering practice. Dates refer to the records in my previous
-    site; they do not assert that a deployment or test was reverified today.
+    Projects with public source code. Follow the repository links for the code and ongoing changes.
   </p>
   {
     projects.map((p) => (
       <section>
-        <p class='text-sm text-muted-foreground'>Record date：{p.verified}</p>
-        {p.links.repository && (
-          <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
-            GitHub →
-          </a>
-        )}
-        {p.links.demo && (
-          <p>
-            <a href={p.links.demo} target='_blank' rel='noopener noreferrer'>
-              Project website (current availability not rechecked) →
-            </a>
-          </p>
-        )}
+        <h2 id={p.id}>{p.enName}</h2>
+        <p>{p.enDescription}</p>
+        <a href={p.links.repository} target='_blank' rel='noopener noreferrer'>
+          View source on GitHub →
+        </a>
       </section>
     ))
   }

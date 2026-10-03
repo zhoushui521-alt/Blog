@@ -2,7 +2,7 @@
 
 记录 AI（人工智能）应用开发、工程实践，以及学习中值得留下的问题。
 
-这里既有整理后的文章，也有项目推进过程中的笔记。我希望留下的不只是“做了什么”，还有为什么这样做、遇到了哪些问题，以及哪些结论仍需要验证。
+这里既有整理后的文章，也有学习过程中留下的笔记。我希望留下的不只是“做了什么”，还有为什么这样做、遇到了哪些问题，以及哪些结论仍需要验证。
 
 [阅读第一篇文章](src/content/blog/20261003-learning-with-ai/post.md) · [GitHub（个人主页）](https://github.com/zhoushui521-alt)
 
@@ -10,13 +10,13 @@
 
 ## 博客里有什么
 
-| 栏目 | 内容 |
-| --- | --- |
-| Blog（文章） | 围绕一个问题展开的思考、学习方法与实践复盘 |
-| Notes（笔记） | 工程日志、阶段记录和简短的技术笔记 |
-| Projects（项目） | 项目介绍、技术选择与已有成果 |
-| About（关于） | 个人介绍、学习与实践经历 |
-| Lab / Talks / Links（实验／分享／友链） | 已保留栏目，内容逐步补充 |
+| 栏目                    | 内容                                             |
+| ----------------------- | ------------------------------------------------ |
+| Blog（文章）            | 围绕一个问题展开的思考、学习方法与实践复盘       |
+| Notes（笔记）           | 从学习资料整理的概念、代码例子、取舍与待验证问题 |
+| Open Source（开源项目） | 已公开源码的项目介绍与仓库入口                   |
+| About（关于）           | 个人介绍、学习与实践经历                         |
+| Links（友链）           | 朋友与值得阅读的独立博客                         |
 
 站点支持中英文页面、深浅色主题、站内搜索、文章目录和 RSS（订阅源）。首页还保留了一个模拟终端，可以通过预设命令浏览公开内容。
 
@@ -77,17 +77,25 @@ comment: false
 - 延伸阅读只放与正文直接相关、实际引用的资料；单纯的文风参考不列入。
 - 如需英文版，在同目录新增 `post.en.md`（英文正文），设置 `language: 'en'`（英文）及 `translationKey`（对应中文文章的路径）。例如首篇文章的对应值为 `20261003-learning-with-ai/post`。
 
+## 写笔记
+
+笔记放在 `src/content/notes/`（笔记目录），围绕具体问题解释概念、例子、适用边界和待验证内容，不用项目发布记录充当学习笔记。
+
+从个人笔记库选材时，只整理确认能公开的正文；原始笔记、私人路径、聊天记录、追踪参数和未经核实的效果数字不随仓库上传。引用资料放在对应论述旁边，文风参考不列为延伸阅读。
+
+目前整理了四个主题：[检索与上下文](src/content/notes/rag-retrieval-ranking-context.md)、[链式数据流](src/content/notes/lcel-data-flow.md)、[数据驱动界面](src/content/notes/react-data-driven-ui.md)、[任务交接](src/content/notes/context-handoff.md)，各有对应英文版。页面日期为公开整理日期，原始记录日期在已知时单独注明。
+
 ## 修改站点
 
-| 想修改什么 | 文件或目录 |
-| --- | --- |
-| 站名、导航、评论等全局配置 | `src/site.config.ts`（站点配置） |
-| 个人简介与项目资料 | `src/data/profile.ts`（公开资料） |
-| 中英文首页 | `src/components/home/DanielHome.astro`（首页组件） |
-| 关于、联系、项目等页面 | `src/pages/`（页面路由） |
-| 文章与笔记 | `src/content/blog/`、`src/content/notes/`（内容目录） |
-| 微信收款二维码 | `public/images/wechat-pay.jpg`（公开收款图片） |
-| 头像与网站图标 | `src/assets/avatar.png`、`public/favicon/`（图片资源） |
+| 想修改什么                 | 文件或目录                                             |
+| -------------------------- | ------------------------------------------------------ |
+| 站名、导航、评论等全局配置 | `src/site.config.ts`（站点配置）                       |
+| 个人简介与项目资料         | `src/data/profile.ts`（公开资料）                      |
+| 中英文首页                 | `src/components/home/DanielHome.astro`（首页组件）     |
+| 关于、联系、项目等页面     | `src/pages/`（页面路由）                               |
+| 文章与笔记                 | `src/content/blog/`、`src/content/notes/`（内容目录）  |
+| 微信收款二维码             | `public/images/wechat-pay.jpg`（公开收款图片）         |
+| 头像与网站图标             | `src/assets/avatar.png`、`public/favicon/`（图片资源） |
 
 主要使用 Astro 5（站点框架）、TypeScript（类型语言）、React（交互组件）和 UnoCSS（样式工具），通过 Vercel（托管平台）适配器生成部署产物。
 

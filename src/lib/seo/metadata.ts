@@ -19,10 +19,10 @@ const sections: Record<string, [string, string, string, string]> = {
     'Find Daniel on GitHub to discuss AI applications and project work.'
   ],
   '/projects': [
-    '项目',
-    'Daniel 的工程项目：网页收藏、学习资料助手、个人站点、集群测试与应用开发。',
-    'Projects',
-    'Explore Daniel’s web archive, study assistant, personal site and systems projects.'
+    'Open Source',
+    'Daniel 的公开源码项目：编程智能体、学习资料助手与个人网站。',
+    'Open Source',
+    'Explore Daniel’s public repositories for a coding agent, study material assistant and personal website.'
   ],
   '/links': [
     '友情链接',
