@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Daniel',
   location: 'China',
-  title: "Daniel's Personal Blog",
+  title: "Daydreaming",
   github: 'https://github.com/zhoushui521-alt',
   username: 'zhoushui521-alt',
   role: 'AI 应用开发 · 全栈实践',

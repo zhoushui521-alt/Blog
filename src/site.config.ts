@@ -3,7 +3,7 @@ import type { Config, IntegrationUserConfig, ThemeUserConfig } from 'astro-pure/
 export const theme: ThemeUserConfig = {
   // === Basic configuration ===
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: "Daniel's Personal Blog",
+  title: "Daydreaming",
   /** Will be used in index page & copyright declaration */
   author: 'Daniel',
   /** Description metadata for your website. Can be used in page metadata. */

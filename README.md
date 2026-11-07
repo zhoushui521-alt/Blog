@@ -1,4 +1,4 @@
-# Daniel's Personal Blog
+# Daydreaming
 
 记录 AI（人工智能）应用开发、工程实践，以及学习中值得留下的问题。
 
