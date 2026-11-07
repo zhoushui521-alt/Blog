@@ -76,6 +76,10 @@ html.dark {
   color-scheme: dark;
 }
 
+html:not(.dark) img[src='/images/learning-feedback-loop.svg'] {
+  color-scheme: light;
+}
+
 /* Global */
 a {
   transition: color 0.2s ease;

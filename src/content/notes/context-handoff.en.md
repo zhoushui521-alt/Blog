@@ -2,11 +2,13 @@
 title: 'How to hand off a task when a conversation gets long'
 description: 'A useful handoff preserves actionable state: the goal, files, verified results, unresolved questions and the next step.'
 date: 2026-10-03
+updatedDate: 2026-10-29
 tags: [ai, context, workflow, learning]
 type: note
 status: in-progress
 language: en
 translationKey: context-handoff
+relatedBlog: ['20261003-learning-with-ai/post']
 ---
 
 Adapted from my learning note about long conversations and task drift. This is a collaboration method, not a guarantee that a fresh conversation will be correct.
@@ -45,6 +47,22 @@ A conversation identifier is useful only when the receiving tool can actually ac
 A handoff is a snapshot. Someone may have changed the branch or files, or stopped a service. Check the working state and the necessary runtime evidence before proceeding.
 
 If the remaining task is a mobile check, start by reproducing it at a mobile viewport. Do not turn it into another redesign without a reason. If the files disagree with the handoff, establish the difference first.
+
+## Preserve an unknown outcome explicitly
+
+A write request can time out after the destination has already saved the result. Missing a success response does not establish failure. A handoff that merely says “upload failed; retry” can cause a duplicate.
+
+Record the local file and digest, destination, available object identifier, last confirmed step, and the query that can resolve the uncertainty. Keep credentials and temporary upload URLs out of the handoff.
+
+```text
+Action: save a file
+Known: the request was sent; local file and digest are recorded
+Unknown: whether the destination saved it
+First: query using the existing object or source identifier
+Then: verify and reuse an existing result, or retry after confirming absence
+```
+
+This is a synthetic example, not evidence that an upload succeeded. If reliable lookup or deduplication is unavailable, preserve the unresolved state instead of guessing through repeated writes. The [feedback-path exercise in the Chinese article](/blog/20261003-learning-with-ai/post) also separates recorded information from information actually available to the next step.
 
 ## When a handoff helps
 
