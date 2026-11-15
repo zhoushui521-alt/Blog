@@ -6,6 +6,7 @@ tags: [langchain, lcel, learning]
 type: note
 status: in-progress
 language: en
+draft: true
 translationKey: lcel-data-flow
 ---
 

@@ -6,6 +6,7 @@ tags: [rag, retrieval, learning]
 type: note
 status: in-progress
 language: en
+draft: true
 translationKey: rag-retrieval-ranking-context
 ---
 

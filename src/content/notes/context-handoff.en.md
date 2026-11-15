@@ -7,6 +7,7 @@ tags: [ai, context, workflow, learning]
 type: note
 status: in-progress
 language: en
+draft: true
 translationKey: context-handoff
 relatedBlog: ['20261003-learning-with-ai/post']
 ---

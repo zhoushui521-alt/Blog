@@ -4,13 +4,13 @@ description: '新窗口需要的是能接着工作的状态：目标、文件、
 date: 2026-10-03
 updatedDate: 2026-10-29
 tags: [ai, context, workflow, learning]
-type: note
+type: idea
 status: in-progress
 language: zh
 relatedBlog: ['20261003-learning-with-ai/post']
 ---
 
-整理自学习笔记《解决窗口太长，AI 漂移问题》。这里记录一种协作方法，不把换窗口当成保证模型正确的办法。
+这篇是 2026 年 10 月整理的，起因挺实际：活干到一半换窗口，接不上，补上下文比干活还累。但我不想把它写成换窗口的教程——换窗口本身不解决问题，能不能接着干活才解决。所以这里记的是状态怎么交接，不是窗口怎么开。
 
 ## 换窗口容易，接着做才难
 
